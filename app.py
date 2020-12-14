@@ -26,6 +26,7 @@ from forms import (
     SearchForm,
 )
 from models import db, connect_db, User, Song, Setlist, SetlistSong
+from secrets import LYRICS_API_KEY
 
 CURR_USER_KEY = "curr_user"
 
@@ -351,11 +352,22 @@ def fetch_lyrics(song_id):
     """Fetches and returns an updated song object JSON with lyrics from Genius."""
 
     song = Song.query.get_or_404(song_id)
-    search_string = f"{song.title} {song.artist}"
+    form = SongUpdateForm(obj=song)
 
-    # TODO: Add API call to Genius - search > get song ID > get song
+    base_api_url = "https://orion.apiseeds.com/api/music/lyric/"
+    specific_api_url = f"{song.artist}/{song.title}?apikey={LYRICS_API_KEY}"
+    res = requests.get(base_api_url + specific_api_url).json()
 
-    return ""
+    if res.get("error"):
+        flash("Lyrics could not be imported; try manually entering lyrics.", "danger")
+        return redirect(f"/songs/{song_id}/update")
+    else:
+        new_lyrics = res.get("result").get("track").get("text")
+        song.lyrics = new_lyrics
+        db.session.add(song)
+        db.session.commit()
+        flash("Lyrics successfully imported!", "success")
+        return redirect(f"/songs/{song_id}/update")
 
 
 @app.route("/songs/<int:song_id>/delete", methods=["GET", "POST"])

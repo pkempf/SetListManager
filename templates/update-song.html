@@ -2,6 +2,7 @@
 {% block title %}Setlist Manager: Update Song {{song.title}}{% endblock title %}
 {% block content %}
 <h1 class="my-3">Update Song</h1>
+<a href="/songs/{{song.id}}/fetch-lyrics" class="btn btn-info mb-3">Fetch Lyrics using APISEEDS Lyrics API</a>
 <form action="/songs/{{song.id}}/update" method="post">
     {% include '_form.html' %}
 </form>
