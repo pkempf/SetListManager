@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Update Song {{song.title}}{% endblock title %}
+{% block content %}
+<h1 class="my-3">Update Song</h1>
+<form action="/songs/{{song.id}}/update" method="post">
+    {% include '_form.html' %}
+</form>
+<a href="/songs/{{song.id}}" class="btn btn-outline-primary btn-block mb-3">Back</a>
+{% endblock content %}

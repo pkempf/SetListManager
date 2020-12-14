@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{g.user.username}}'s Setlists{% endblock title %}
+{% block content %}
+    <h1 class="my-3">{{g.user.username}}'s Setlists</h1>
+    <h4>Setlists:</h4>
+    <ul>
+        {% if g.user.setlists %}
+            {% for setlist in g.user.setlists %}
+                <li><a href="/setlists/{{setlist.id}}">{{setlist.name}}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>You haven't created any setlists.</li>
+        {% endif %}
+    </ul>
+    <a href="/setlists/new" class="btn btn-primary">Create a Setlist</a>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Delete Setlist{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Confirm Deletion: {{setlist.name}}</h1>
+    <form>
+        <button class="btn btn-danger"
+                formmethod="post"
+                formaction="/setlists/{{setlist.id}}/delete">Delete Setlist</button>
+        <button class="btn btn-primary"
+                formmethod="get"
+                formaction="/setlists/{{setlist.id}}">Cancel</button>
+    </form>
+{% endblock content %}

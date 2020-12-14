@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}&blacktriangleright; {{setlist.name}}{% endblock title %}
+{% block content %}
+    <h2 class="my-3">Perform: {{setlist.name}}</h2>
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="sticky-top py-1">
+                {% for song in setlist.songs %}<div>
+                    <a class="my-4 btn btn-block btn-{% if song.id == active_song.id %}primary{% else %}secondary{% endif %}"
+                        href="/setlists/{{setlist.id}}/perform/{{song.id}}">{{song.title}}</a></div>
+                {% endfor %}
+                <a href="/setlists/{{setlist.id}}" class="btn btn-outline-secondary btn-block">Back</a>
+                {% if setlist.notes %}
+                <h5 class="mt-2">Notes:</h5>
+                {% endif %}
+                <div style="height: 400px; overflow-y: auto; white-space: pre-wrap;">{{setlist.notes}}</div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-9">
+            <h4><b>{{active_song.title}}</b> (by {{active_song.artist}})</h4>
+            <h5 class="mb-2">Lyrics:</h5>
+            <p style="white-space: pre-wrap;">{{active_song.lyrics}}</p>
+        </div>
+    </div>
+{% endblock content %}

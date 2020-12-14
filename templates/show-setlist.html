@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{setlist.name}}{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Setlist: {{setlist.name}}</h1>
+    {% if setlist.user_id == g.user.id %}
+    <p><a href="/setlists/{{setlist.id}}/edit" class="btn btn-primary">Update Setlist</a>
+        {% if setlist.songs %}
+        <a href="/setlists/{{setlist.id}}/perform/{{setlist.songs[0].id}}" class="btn btn-success">Perform Setlist</a>
+        {% endif %}
+        <a href="/setlists/{{setlist.id}}/delete" class="btn btn-danger">Delete Setlist</a></p>
+    {% endif %}
+    <h4>Songs:</h4>
+    {% if setlist.songs %}
+    <ol>
+      {% for song in setlist.songs %}
+          <li><a href="/songs/{{song.id}}">{{song.title}}</a> by {{song.artist}}</li>
+      {% endfor %}
+    </ol>
+    {% else %}
+      <p>This setlist doesn't yet contain any songs.</p>
+    {% endif %}
+    {% if setlist.notes %}
+    <h4>Notes:</h4>
+    <p style="white-space: pre-wrap;">{{setlist.notes}}</p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "c:\\Users\\peter\\Google Drive\\Springboard Exercises\\Capstone\\setlist-manager\\venv\\Scripts\\python.exe",
+    "prettier.disableLanguages": [
+        "html"
+    ],
+    "editor.formatOnSave": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}

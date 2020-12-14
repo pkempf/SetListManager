@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{res.count()}} Search Result(s){% endblock title %}
+{% block content %}
+<h1 class="my-3">Search Results</h1>
+<h4>Search results: {{res.count()}}</h4>
+{% if res.count() == 0 %}
+    <p>We couldn't find anything using those search terms. Please try again.</p>
+{% endif %}
+<ul>
+  {% for result in res %}
+    <li><a href="/{{res_type}}/{{result.id}}">
+      {% if res_type == 'songs' %}
+        {{result.title}} by {{result.artist}}
+      {% endif %}
+      {% if res_type == 'setlists' %}
+        {{result.name}} by {{result.user.username}}  
+      {% endif %}
+      {% if res_type == 'users' %}
+        {{result.username}}
+      {% endif %}
+    </a></li>
+  {% endfor %}
+</ul>
+<h4>Search again:</h4>
+<form action="/search" method="post">
+    {% include '_form.html' %}
+</form>
+{% endblock content %}

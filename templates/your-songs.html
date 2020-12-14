@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{g.user.username}}'s Songs{% endblock title %}
+{% block content %}
+    <h1 class="my-3">{{g.user.username}}'s Songs</h1>
+    <h4>Songs:</h4>
+    <ul>
+        {% if songs %}
+            {% for song in songs %}
+                <li><a href="/songs/{{song.id}}">{{song.title}}</a> by {{song.artist}}</li>
+            {% endfor %}
+        {% else %}
+            <li>You haven't added any songs.</li>
+        {% endif %}
+    </ul>
+    <a href="/songs/new" class="btn btn-primary">Add a Song</a>
+{% endblock content %}

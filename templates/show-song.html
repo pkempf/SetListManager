@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{song.title}}{% endblock title %}
+{% block content %}
+    <h1 class="my-3">{{song.title}} by {{song.artist}}</h1>
+    {% if song.user_id == g.user.id %}
+    <p><a href="/songs/{{song.id}}/update" class="btn btn-primary">Update Song</a>
+        <a href="/songs/{{song.id}}/delete" class="btn btn-danger">Delete Song</a></p>
+    {% endif %}
+    <h4>Lyrics:</h4>
+    <p style="white-space: pre-wrap;">{{song.lyrics}}</p>
+{% endblock content %}

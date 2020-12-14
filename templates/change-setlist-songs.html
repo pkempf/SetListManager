@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Edit Setlist: {{setlist.name}}{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Edit Setlist: {{setlist.name}}</h1>
+    <p>Drag and drop to reorder songs from the setlist. Click the left arrow ("<") to add a song. 
+        To remove a song, simply click the X.</p>
+    <div class="row">
+        <div class="col-sm">
+            <h4>Songs In Setlist:</h4>
+            <ul id="songs-in-setlist" class="js-sortable sortable list list-unstyled"></ul>
+        </div>
+        <div class="col-sm">
+            <h4>Other Songs:</h4>
+            <p><input type="checkbox" id="filter"> Filter: <input type="text" class="form-control" id="filter-string" placeholder="Filter by title and/or artist"></p>
+            <ul style="height:500px; overflow:hidden; overflow-y:auto;" id="songs-not-in-setlist" class="list list-unstyled"></ul>
+        </div>
+    </div>
+        <button class="btn btn-primary js-serialize-button" 
+                id="save-changes">Save Changes</button>
+        <a class="btn btn-outline-primary"
+                href="/setlists/{{setlist.id}}">Back</a>
+        <p id="success">Setlist updated!</p>
+        <hr>
+        <div class="form-group">
+            <label for="setlist-notes">Notes:</label>
+            <textarea class="form-control" id="setlist-notes" name="setlist-notes" 
+            rows="8">{% if setlist.notes %}{{setlist.notes}}{% endif %}</textarea>
+        </div>
+{% endblock content %}
+
+{% block morescripts %}
+      <script src="/static/html5sortable.min.js"></script>
+      <script src="/static/axios.min.js"></script>
+      <script src="/static/reorder-setlist.js"></script>
+{% endblock morescripts %}

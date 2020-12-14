@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Delete User{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Confirm Deletion: {{user.username}}</h1>
+    <form>
+        <button class="btn btn-danger"
+                formmethod="post"
+                formaction="/users/{{user.id}}/delete">Delete User</button>
+        <button class="btn btn-primary"
+                formmethod="get"
+                formaction="/users/{{user.id}}">Cancel</button>
+    </form>
+{% endblock content %}

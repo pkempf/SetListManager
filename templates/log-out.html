@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Sign Out{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Confirm Log Out</h1>
+    <form>
+        <button class="btn btn-primary"
+                formmethod="post"
+                formaction="/log-out">Log Out</button>
+        <button class="btn btn-outline-primary"
+                formmethod="get"
+                formaction="/">Back</button>
+    </form>
+{% endblock content %}

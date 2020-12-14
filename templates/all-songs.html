@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: All Songs{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Setlist Manager: All Songs</h1>
+    <h4>Songs:</h4>
+    {% if songs %}
+    <ul>
+      {% for song in songs %}
+          <li><a href="/songs/{{song.id}}">{{song.title}}</a> by {{song.artist}}</li>
+      {% endfor %}
+    </ul>
+    <p>{% if prev_url %}<a href="{{prev_url}}">< Previous</a>{% endif %}
+    {% if prev_url and next_url %}
+        &nbsp|&nbsp
+    {% endif %}
+    {% if next_url %}<a href="{{next_url}}">Next ></a>{% endif %}</p>
+    {% else %}
+      <p>There aren't yet any songs in the database.</p>
+    {% endif %}
+    <a href="/songs/new" class="btn btn-primary my-2">Add a Song</a>
+{% endblock content %}

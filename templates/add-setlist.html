@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Add Setlist{% endblock title %}
+{% block content %}
+<h1 class="my-3">Add Setlist</h1>
+<form action="/setlists/new" method="post">
+    {% include '_form.html' %}
+</form>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: Update User {{g.user.username}}{% endblock title %}
+{% block content %}
+<h1 class="my-3">Update User Profile</h1>
+<form action="/users/update" method="post">
+    {% include '_form.html' %}
+</form>
+<a href="/users/{{g.user.id}}/delete" class="btn btn-block btn-danger my-3">Delete User</a>
+<a href="/users/{{g.user.id}}" class="btn btn-block btn-outline-primary my-3">Back</a>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{{form.hidden_tag()}}
+{% for field in form if field.widget.input_type != 'hidden' %}
+    <div class="form-group">
+        {% if field.type == "SubmitField" %}
+            {{field(class="form-control btn btn-primary")}}
+        {% else %}
+            {{field.label}}
+            {{field(class="form-control")}}
+        {% endif %}
+
+        {% for error in field.errors %}
+            <span class="text-danger">{{error}}</span>
+        {% endfor %}
+    </div>
+    
+{% endfor %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Setlist Manager - Home</h1>
+    {% if g.user %}
+        <p>Welcome back, {{g.user.username}}!</p>
+        <ul>
+            <li>Setlists:
+                <ul>
+                    <li><a href="/your-setlists">Your Setlists</a></li>
+                    <li><a href="/setlists">All Setlists</a></li>
+                </ul></li>
+            <li>Songs:
+                <ul>
+                    <li><a href="/your-songs">Your Songs</a></li>
+                    <li><a href="/songs">All Songs</a></li>
+                </ul>
+            </li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/log-out">Log Out</a></li>
+        </ul>
+    {% else %}
+        <p>Welcome to the Setlist Manager! To continue, please do one of the following:</p>
+        <ul>
+            <li><a href="/log-in">Log In</a></li>
+            <li><a href="/sign-up">Sign Up</a></li>
+        </ul>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: {{user.username}}{% endblock title %}
+{% block content %}
+    <h1 class="my-3">User: {{user.username}}</h1>
+    {% if user.id == g.user.id %}
+    <p><a href="/users/update">Update Preferences</a></p>
+    {% endif %}
+    <h4>{% if user.id == g.user.id %}Your {% endif %}Setlists:</h4>
+    <ul>
+        {% if user.setlists %}
+            {% for setlist in user.setlists %}
+                <li><a href="/setlists/{{setlist.id}}">{{setlist.name}}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>{% if user.id == g.user.id %}You haven't{% else %}This user hasn't{% endif %} created any setlists.</li>
+        {% endif %}
+        {% if user.id == g.user.id %}
+            <a href="/setlists/new" class="btn btn-primary my-2">Create {% if user.setlists %}Another
+                {% else %} a{% endif %} Setlist</a>
+        {% endif %}
+    </ul>
+    <h4>{% if user.id == g.user.id %}Your {% endif %}Songs:</h4>
+    <ul>
+        {% if user.songs %}
+            {% for song in user.songs %}
+                <li><a href="/songs/{{song.id}}">{{song.title}}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>{% if user.id == g.user.id %}You haven't{% else %}This user hasn't{% endif %} added any songs.</li>
+        {% endif %}
+        {% if user.id == g.user.id %}
+            <a href="/songs/new" class="btn btn-primary my-2">Add {% if user.songs %}Another
+                {% else %} a{% endif %} Song</a>
+        {% endif %}
+    </ul>
+{% endblock content %}

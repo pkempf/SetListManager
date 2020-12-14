@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Setlist Manager: All Setlists{% endblock title %}
+{% block content %}
+    <h1 class="my-3">Setlist Manager: All Setlists</h1>
+    <h4>Setlists:</h4>
+    {% if setlists %}
+    <ul>
+      {% for setlist in setlists %}
+          <li><a href="/setlists/{{setlist.id}}">{{setlist.name}}</a> 
+            by <a href="/users/{{setlist.user_id}}"></a>{{setlist.user.username}}</li>
+      {% endfor %}
+    </ul>
+    <p>{% if prev_url %}<a href="{{prev_url}}">< Previous</a>{% endif %}
+    {% if prev_url and next_url %}
+        &nbsp|&nbsp
+    {% endif %}
+    {% if next_url %}<a href="{{next_url}}">Next ></a>{% endif %}</p>
+    {% else %}
+      <p>There aren't yet any setlists in the database.</p>
+    {% endif %}
+    <a href="/setlists/new" class="btn btn-primary my-2">Create a Setlist</a>
+{% endblock content %}
