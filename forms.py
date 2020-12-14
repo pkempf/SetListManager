@@ -75,9 +75,7 @@ class SongUpdateForm(FlaskForm):
 
     title = StringField("Song title:", validators=[DataRequired()])
     artist = StringField("Artist:", validators=[DataRequired()])
-    lyrics = TextAreaField(
-        "Lyrics:", validators=[DataRequired()], render_kw={"rows": "10"}
-    )
+    lyrics = TextAreaField("Lyrics:", validators=[Optional()], render_kw={"rows": "10"})
     submit = SubmitField("Update Song", render_kw={"action": "post"})
 
 
