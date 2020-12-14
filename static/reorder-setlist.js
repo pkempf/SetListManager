@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:5000";
+const BASE_URL = window.location.pathname.split("/")[0];
 const SETLIST_ID = window.location.pathname.split("/")[2];
 
 let setlistSongs = [];
