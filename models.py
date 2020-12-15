@@ -120,7 +120,9 @@ class Setlist(db.Model):
         secondary="setlists_songs",
         backref="setlists",
     )
-    setlist_songs = db.relationship("SetlistSong", backref="setlist")
+    setlist_songs = db.relationship(
+        "SetlistSong", backref="setlist", cascade="all, delete-orphan"
+    )
 
 
 class SetlistSong(db.Model):
@@ -136,8 +138,7 @@ class SetlistSong(db.Model):
         db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
     )
     index = db.Column(db.Integer, nullable=False)
-
-    # TODO: Add unique constraint - setlist_id + index
+    unique = db.UniqueConstraint("song_id", "index")
 
 
 def connect_db(app):

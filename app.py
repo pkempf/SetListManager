@@ -469,6 +469,10 @@ def del_setlist(setlist_id):
         return redirect(f"/setlists/{setlist_id}")
 
     if request.method == "POST":
+        # for setlist_song in setlist.setlist_songs:
+        #     db.session.delete(setlist_song)
+        # db.session.commit()
+
         db.session.delete(setlist)
         db.session.commit()
         flash("Setlist deleted successfully!", "success")
