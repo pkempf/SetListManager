@@ -26,9 +26,9 @@ from forms import (
     SearchForm,
 )
 from models import db, connect_db, User, Song, Setlist, SetlistSong
-from secrets import LYRICS_API_KEY
 
 CURR_USER_KEY = "curr_user"
+LYRICS_API_KEY = os.environ.get("LYRICS_API_KEY", "no_key")
 
 app = Flask(__name__)
 
