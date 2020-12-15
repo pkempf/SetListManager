@@ -443,9 +443,6 @@ def show_setlist(setlist_id):
     return render_template("show-setlist.html", setlist=setlist)
 
 
-# TODO: Add update setlist functionality
-
-
 @app.route("/setlists/<int:setlist_id>/edit")
 def edit_setlist(setlist_id):
     """Edits the title and songs of a setlist. Uses JS/API calls."""
