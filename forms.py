@@ -33,23 +33,24 @@ class UserUpdateForm(FlaskForm):
 
     username = StringField("Username", validators=[DataRequired()])
     email = StringField("Email", validators=[Email()])
-    darkmode = BooleanField("Use night mode")
-    pwd = PasswordField(
-        "Current password",
-        validators=[Length(min=8, message="Please enter your current password.")],
-    )
     new_pwd = PasswordField(
-        label="New password (leave blank to keep current password)",
+        label="New password (OPTIONAL - SEE INSTRUCTIONS):",
         validators=[Length(min=8), Optional()],
     )
     confirm_pwd = PasswordField(
-        label="Confirm new password",
+        label="Confirm new password (OPTIONAL - SEE INSTRUCTIONS):",
         validators=[
             Length(min=8),
             Optional(),
             EqualTo("new_pwd", "Passwords must match."),
         ],
     )
+    darkmode = BooleanField("Use night mode")
+    pwd = PasswordField(
+        "Please enter your current password to authorize changes:",
+        validators=[Length(min=8, message="Please enter your current password.")],
+    )
+
     submit = SubmitField("Update User Preferences", render_kw={"action": "post"})
 
 

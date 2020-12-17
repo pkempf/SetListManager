@@ -2,6 +2,16 @@
 {% block title %}Setlist Manager: Update User {{g.user.username}}{% endblock title %}
 {% block content %}
 <h1 class="my-3">Update User Profile</h1>
+<div class="alert alert-info"><strong>INSTRUCTIONS:</strong><hr>
+    <ul>
+        <li>Only fill out the "New password" and "Confirm new password" fields 
+            if you want to change your password.</li>
+        <li>Whether or not you are changing your password, please enter your
+            current password in the final field to authorize changes.
+        </li>
+    </ul>
+</div>
+
 <form action="/users/update" method="post">
     {% include '_form.html' %}
 </form>

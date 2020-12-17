@@ -8,7 +8,7 @@ let otherSongs = [];
 
 function makeSetlistSongHTML(song) {
   return `
-        <li id="song-li-${song.id}" data-id="${song.id}" class="alert alert-primary item" style="user-select: none;">
+        <li id="song-li-${song.id}" data-id="${song.id}" class="alert alert-primary item" style="user-select: none;">||&nbsp
             <a href="/songs/${song.id}" target="_blank">${song.title}</a> <small>by ${song.artist}</small>
             <span class="badge badge-light float-right mt-1" style="cursor: pointer;" id="remove-song-${song.id}" data-id="${song.id}">X</span>
         </li>
