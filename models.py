@@ -20,7 +20,7 @@ class User(db.Model):
     darkmode = db.Column(db.Boolean, nullable=False, default=False)
 
     songs = db.relationship("Song", backref="user")
-    setlists = db.relationship("Setlist", backref="user")
+    setlists = db.relationship("Setlist", backref="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         """Returns a representation of the user."""
