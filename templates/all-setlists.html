@@ -18,5 +18,9 @@
     {% else %}
       <p>There aren't yet any setlists in the database.</p>
     {% endif %}
+    {% if g.user %}
     <a href="/setlists/new" class="btn btn-primary my-2">Create a Setlist</a>
+    {% else %}
+    <p>To create a setlist, please <a href="/log-in">log in.</a></p>
+    {% endif %}
 {% endblock content %}

@@ -28,9 +28,9 @@ Implemented features include:
 - Performance mode
   - Simplified and convenient user interface for use when performing a setlist
 
-### Standard usage example
+### User flow
 
-A typical user would access the website and be prompted either to log in or to create an account. Once logged in, they see a user homepage with links to their setlists and songs, as well as links to _all_ setlists and songs. A user might choose to create a new setlist from the Your Setlists page, at which point they would be prompted to enter a title. They would then be directed to the new setlist page, where they see a link to edit the setlist, which is done via dragging and dropping songs from a filtered list. Once the setlist is created, the user might choose to perform the setlist; the Perform link is also accessible from the setlist page. Having performed the setlist, the user might choose to log out, or to stay logged in for ease of use the next time they access the site.
+![User flow diagram](/userflow.png)
 
 ### API used
 
@@ -40,6 +40,10 @@ As stated above, this project makes use of the [APISEEDS Lyrics API](https://api
 
 The Setlist Manager is built primarily in Python, using [Flask](https://flask.palletsprojects.com/en/1.1.x/), [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), and [Flask WTForms](https://flask-wtf.readthedocs.io/en/stable/). The database used is [PostgreSQL](https://postgresql.org), and the site is hosted on [Heroku](https://heroku.com). The front end uses [Bootstrap 4](https://getbootstrap.com), [jQuery](https://jquery.com/), [HTML5Sortable](https://github.com/lukasoppermann/html5sortable), and themes from [Bootswatch](https://bootswatch.com).
 
+### Setup
+
+Installing and running your own instance of the Setlist Manager follows typical Flask procedures, with one exception: for full use of the lyrics import functionality, you will need to obtain a (free!) API key from [APISEEDS](https://apiseeds.com) by registering an account, then set that API key as the environment variable `LYRICS_API_KEY`.
+
 ### Planned features
 
 Upcoming features currently include:
@@ -47,6 +51,7 @@ Upcoming features currently include:
 - Chord support, so that instrumentalists can derive greater use from the performance mode
   - Different font options; for chord support, a monotype font would almost certainly be necessary, but while I'm at it I might as well throw in a few other fonts
 - Privacy settings on setlists, so that setlists can be kept private, shared only with certain users, or made fully public
+- A forgotten password reset system, utilizing user email addresses
 
 ---
 

@@ -299,6 +299,10 @@ def show_all_songs():
 def add_song():
     """Adds a song to the database."""
 
+    if not g.user:
+        flash("You must be logged in to add a song!", "danger")
+        return redirect("/")
+
     form = SongAddForm()
 
     if form.validate_on_submit():
@@ -351,8 +355,16 @@ def update_song(song_id):
 def fetch_lyrics(song_id):
     """Fetches and returns an updated song object JSON with lyrics from Genius."""
 
+    if not g.user:
+        flash("You must be logged in to update a song's lyrics!", "danger")
+        return redirect("/")
+
     song = Song.query.get_or_404(song_id)
     form = SongUpdateForm(obj=song)
+
+    if song.user_id != g.user.id:
+        flash("You don't have permission to edit that song.", "danger")
+        return redirect("/")
 
     base_api_url = "https://orion.apiseeds.com/api/music/lyric/"
     specific_api_url = f"{song.artist}/{song.title}?apikey={LYRICS_API_KEY}"
@@ -421,6 +433,10 @@ def show_all_setlists():
 def add_setlist():
     """Adds a setlist to the database."""
 
+    if not g.user:
+        flash("You must be logged in to add a setlist!", "danger")
+        return redirect("/")
+
     form = SetlistAddForm()
 
     if form.validate_on_submit():
@@ -447,7 +463,15 @@ def show_setlist(setlist_id):
 def edit_setlist(setlist_id):
     """Edits the title and songs of a setlist. Uses JS/API calls."""
 
+    if not g.user:
+        flash("You must be logged in to edit a setlist!", "danger")
+        return redirect("/")
+
     setlist = Setlist.query.get_or_404(setlist_id)
+
+    if g.user.id != setlist.user_id:
+        flash("You are not authorized to edit this setlist.", "danger")
+        return redirect("/")
 
     return render_template("change-setlist-songs.html", setlist=setlist)
 
@@ -466,10 +490,6 @@ def del_setlist(setlist_id):
         return redirect(f"/setlists/{setlist_id}")
 
     if request.method == "POST":
-        # for setlist_song in setlist.setlist_songs:
-        #     db.session.delete(setlist_song)
-        # db.session.commit()
-
         db.session.delete(setlist)
         db.session.commit()
         flash("Setlist deleted successfully!", "success")
@@ -580,7 +600,6 @@ def update_setlist(setlist_id):
     db.session.commit()
 
     new_song_list = []
-    new_setlist_songs_list = []
 
     index = 0
 

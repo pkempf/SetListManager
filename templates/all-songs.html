@@ -17,5 +17,9 @@
     {% else %}
       <p>There aren't yet any songs in the database.</p>
     {% endif %}
+    {% if g.user %}
     <a href="/songs/new" class="btn btn-primary my-2">Add a Song</a>
+    {% else %}
+    <p>To add a song, please <a href="/log-in">log in.</a></p>
+    {% endif %}
 {% endblock content %}
