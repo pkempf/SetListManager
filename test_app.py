@@ -332,22 +332,24 @@ class SetlistManagerViewTestCase(TestCase):
             self.assertEqual(song.artist, "New Artist")
             self.assertEqual(song.lyrics, "New Lyrics")
 
-    def test_import_lyrics(self):
-        """Makes sure lyrics can be fetched"""
+    # Usable only with LYRICS_API_KEY environment variable set:
+    # ---------------------------------------------------------
+    # def test_import_lyrics(self):
+    #     """Makes sure lyrics can be fetched"""
 
-        with app.test_client() as client:
-            with client.session_transaction() as sess:
-                sess[CURR_USER_KEY] = self.uid_1
+    #     with app.test_client() as client:
+    #         with client.session_transaction() as sess:
+    #             sess[CURR_USER_KEY] = self.uid_1
 
-            resp = client.get(
-                f"/songs/{self.lyrics_song_id}/fetch-lyrics", follow_redirects=True
-            )
-            html = resp.get_data(as_text=True)
+    #         resp = client.get(
+    #             f"/songs/{self.lyrics_song_id}/fetch-lyrics", follow_redirects=True
+    #         )
+    #         html = resp.get_data(as_text=True)
 
-            self.assertIn("Never gonna give you up", html)
-            self.assertIn("Never gonna let you down", html)
-            self.assertIn("Never gonna run around", html)
-            self.assertIn("And desert you", html)
+    #         self.assertIn("Never gonna give you up", html)
+    #         self.assertIn("Never gonna let you down", html)
+    #         self.assertIn("Never gonna run around", html)
+    #         self.assertIn("And desert you", html)
 
     def test_update_user(self):
         """Ensures functionality of updating user information"""
