@@ -4,10 +4,10 @@
     <h1 class="my-3">Setlist: {{setlist.name}}</h1>
     {% if setlist.user_id == g.user.id %}
     <p><a href="/setlists/{{setlist.id}}/edit" class="btn btn-primary">Update Setlist</a>
-        {% if setlist.songs %}
-        <a href="/setlists/{{setlist.id}}/perform/{{setlist.songs[0].id}}" class="btn btn-success">Perform Setlist</a>
-        {% endif %}
         <a href="/setlists/{{setlist.id}}/delete" class="btn btn-danger">Delete Setlist</a></p>
+    {% endif %}
+    {% if setlist.songs %}
+        <a href="/setlists/{{setlist.id}}/perform/{{setlist.songs[0].id}}" class="btn btn-success">Perform Setlist</a>
     {% endif %}
     <h4>Songs:</h4>
     {% if setlist.songs %}
